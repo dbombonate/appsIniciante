@@ -20,15 +20,8 @@ function logKey(e) {
 
 // Convert number
 function convertNumber(value){
-    let base = (value.length) - 1;
-    let valPosition = value.slice(0, 1);
-    let deci = valPosition*2^base
-    console.log(base, valPosition, deci);
-    /*while (base > 0) {
-        let deci = valPosition*2^base
-        base--
-    }*/
-    return binaryDisplay.innerHTML = value;
+    decimal = parseInt(value, 2);
+    return binaryDisplay.innerHTML = decimal;
 }
 
 function delIncorrectNumber(){
