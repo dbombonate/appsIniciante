@@ -9,14 +9,16 @@ binaryButton.addEventListener('click', e =>{
     convertNumber(number);
 });
 
+// Check if numbers 0 or 1 is pressed, if not send an alert
 function logKey(e) {
     const keyPress = parseFloat(e.key);
     if (keyPress < 0 || keyPress > 1) {
         delIncorrectNumber();
-        return alert('Informe somente 0 ou 1...');
+        return alert('Informe somente 0 ou 1.');
     }
 }
 
+// Convert number
 function convertNumber(value){
     let base = (value.length) - 1;
     let valPosition = value.slice(0, 1);
