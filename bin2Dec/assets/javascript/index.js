@@ -3,17 +3,30 @@ const binaryButton = document.querySelector('.button-app');
 const binaryDisplay = document.querySelector('.display-converted-app');
 
 binaryInput.addEventListener('keyup', logKey);
+
 binaryButton.addEventListener('click', e =>{
     e.preventDefault();
     const number = binaryInput.value;
+
+    // Check Input, if no value, display an alert and dont proceed.
+    if (!number) return alert('Informe algum valor para realizar a conversão!');
+    
     convertNumber(number);
 });
 
 // Check if numbers 0 or 1 is pressed, if not send an alert
 function logKey(e) {
     const keyPress = parseFloat(e.key);
+
+    // Variable to use position in function
+    let characters = binaryInput.value.length;
+    
+    if (characters > 8) {
+        delIncorrectNumber(characters);
+        return alert('Informar somente 8 caracteres!');
+    }
     if (keyPress < 0 || keyPress > 1) {
-        delIncorrectNumber();
+        delIncorrectNumber(characters);
         return alert('Informe somente 0 ou 1.');
     }
 }
@@ -24,6 +37,9 @@ function convertNumber(value){
     return binaryDisplay.innerHTML = decimal;
 }
 
-function delIncorrectNumber(){
-    return
+// Remove incorrect number
+function delIncorrectNumber(position){
+    console.log(binaryInput.value.slice(0,(position - 1)));
+    const inputNew = binaryInput.value.slice(0,(position - 1));
+    binaryInput.value = inputNew;
 }
