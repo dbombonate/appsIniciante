@@ -8,6 +8,31 @@ body {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     background: silver;
+    min-width: 350px;
+}
+
+.nav-app{
+    margin-top: 0px;
+    padding: 0px;
+}
+
+.options-app {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 15px;
+}
+
+.options-app li {
+    list-style-type: none;
+}
+
+.options-app a {
+    text-decoration: none;
+    color: black;
+    font-weight: 400;
+    font-size: 20px;
 }
 
 .container {
@@ -65,4 +90,27 @@ body {
     text-align: center;
     background-color: rgb(55, 70, 116);
     border-radius: 10px;
+}
+
+.information-text-app {
+    margin: 15px 30px;
+    padding: 10px;
+    text-align: center;
+}
+
+.information-text-app h3 {
+    font-size: 25px;
+    padding: 5px;
+}
+
+.information-text-app h4 {
+    font-size: 23px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.information-text-app p {
+    font-size: 15px;
+    font-weight: 400;
+    margin-top: 10px;
 }
