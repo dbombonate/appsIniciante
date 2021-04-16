@@ -1,45 +1,48 @@
-const binaryInput = document.querySelector('.input-app');
-const binaryButton = document.querySelector('.button-app');
-const binaryDisplay = document.querySelector('.display-converted-app');
+function App() {
 
-binaryInput.addEventListener('keyup', logKey);
+    const binaryInput = document.querySelector('.input-app');
 
-binaryButton.addEventListener('click', e =>{
-    e.preventDefault();
-    const number = binaryInput.value;
+    const binaryButton = document.querySelector('.button-app');
 
-    // Check Input, if no value, display an alert and dont proceed.
-    if (!number) return alert('Informe algum valor para realizar a conversão!');
-    
-    convertNumber(number);
-});
+    const binaryDisplay = document.querySelector('.display-converted-app');
 
-// Check if numbers 0 or 1 is pressed, if not send an alert
-function logKey(e) {
-    const keyPress = parseFloat(e.key);
+    binaryInput.addEventListener('keyup', logKey);
 
-    // Variable to use position in function
-    let characters = binaryInput.value.length;
-    
-    if (characters > 8) {
-        delIncorrectNumber(characters);
-        return alert('Informar somente 8 caracteres!');
+    binaryButton.addEventListener('click', e => {
+        e.preventDefault();
+        const number = binaryInput.value;
+
+        // Check Input, if no value, display an alert and dont proceed.
+        if (!number) return alert('Informe algum valor para realizar a conversão!');
+
+        convertNumber(number);
+    });
+
+    // Check if numbers 0 or 1 is pressed, if not send an alert
+    function logKey(e) {
+        const keyPress = parseFloat(e.key);
+
+        // Variable to use position in function
+        let characters = binaryInput.value.length;
+
+        if (keyPress < 0 || keyPress > 1) {
+            delIncorrectNumber(characters);
+            return alert('Informe somente 0 ou 1.');
+        }
     }
-    if (keyPress < 0 || keyPress > 1) {
-        delIncorrectNumber(characters);
-        return alert('Informe somente 0 ou 1.');
+
+    // Convert number
+    function convertNumber(value) {
+        decimal = parseInt(value, 2);
+        return binaryDisplay.innerHTML = decimal;
+    }
+
+    // Remove incorrect number
+    function delIncorrectNumber(position) {
+        console.log(binaryInput.value.slice(0, (position - 1)));
+        const inputNew = binaryInput.value.slice(0, (position - 1));
+        binaryInput.value = inputNew;
     }
 }
 
-// Convert number
-function convertNumber(value){
-    decimal = parseInt(value, 2);
-    return binaryDisplay.innerHTML = decimal;
-}
-
-// Remove incorrect number
-function delIncorrectNumber(position){
-    console.log(binaryInput.value.slice(0,(position - 1)));
-    const inputNew = binaryInput.value.slice(0,(position - 1));
-    binaryInput.value = inputNew;
-}
+App();
