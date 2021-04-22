@@ -38,6 +38,7 @@ body {
 }
 
 .app-main-display{
+    min-height: 70px;
     display: grid;
     
     margin-top: 25px;
@@ -53,6 +54,7 @@ body {
     text-align: right;
     font-size: 32px;
     grid-area: du;
+    min-height: 40px;
 }
 
 .app-display-operations{
