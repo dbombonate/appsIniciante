@@ -2,6 +2,7 @@ function calc(){
     const numbers = document.querySelectorAll('.number');
     const operators = document.querySelectorAll('.operator');
     const allClear = document.querySelector('.app-button-all-clear');
+    const btnEqual = document.querySelector('.app-button-equal-sign');
 
     const displayCalc = document.querySelector('.app-display-operations');
     const displayOperator = document.querySelector('.app-display-operator');
@@ -17,6 +18,8 @@ function calc(){
 
     allClear.addEventListener('click', allClean);
 
+    btnEqual.addEventListener('click', calculate);
+
     function insertNumber(e) {
         displayCalc.innerHTML += e.target.value;
     };
@@ -24,6 +27,7 @@ function calc(){
     function insertOperator(e) {
         let operator = e.target.value;
         displayOperator.innerHTML = operator;
+        displayCalc.innerHTML += operator;
     };
 
     function allClean() {
@@ -31,6 +35,12 @@ function calc(){
         displayOperator.innerHTML = '';
         displayResult.innerHTML = '';
     }
+
+    function calculate(){
+        let calculation = displayCalc.innerText;
+        displayResult.innerHTML = eval(calculation);
+        displayCalc.innerHTML = '';
+    };
 }
 
 calc();
