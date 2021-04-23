@@ -1,0 +1,27 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    box-sizing: border-box;
+    font-family: 'Roboto', 'Tahoma', sans-serif;
+}
+
+.container {
+    background-color: blue;
+    text-align: center;
+}
+
+.timerNextBread {
+    font-size: 75px;
+}
+
+.timerNextBread h2 {
+    font-size: 30px;
+}
+
+.lastBakedBread {
+    margin-top: 25px;
+    font-size: 40px;
+}
