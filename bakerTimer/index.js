@@ -10,7 +10,7 @@
 function cronometro() {
     // Descomentar linha abaixo para iniciar o cronometro na página.
 
-    window.addEventListener('load', iniciaCron);
+    //window.addEventListener('load', iniciaCron);
     
     // Array with hour and minute for bread batches
     const batches = ["07:00","08:45","10:30","12:15","14:00","15:45","17:30","19:15","21:50"];
@@ -57,7 +57,7 @@ function cronometro() {
     // Function to inform last batch of bread
     function lastBatchBread(idLastBatch){
         const lastBakedBread = document.querySelector('#lastBakedBread');
-        if (idLastBatch < 9){
+        if (idLastBatch < 8){
             lastBakedBread.innerHTML = batches[idLastBatch-1];
         } else {
             lastBakedBread.innerHTML = '<p> Já encerramos as fornadas por hoje! <br> Agradecemos a preferencia! </p>'
