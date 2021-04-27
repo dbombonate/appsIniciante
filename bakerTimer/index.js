@@ -13,7 +13,7 @@ function bakerTimer() {
     window.addEventListener('load', iniciaCron);
     
     // Array with hour and minute for bread batches
-    const batches = ["07:00","08:45","10:30","12:15","14:00","15:45","17:30","19:15","21:50"];
+    const batches = ["07:00","08:45","10:30","12:15","14:00","15:45","17:30","19:15","21:15"];
     const initHour = new Date();
 	
     // Função de formatação dos segundos com base na data 0
@@ -48,7 +48,7 @@ function bakerTimer() {
 
     // Function to determine seconds to the Next Batch of Bread
     function defineTimeToNextBatch(idNextBatch){
-        const nextBatch = batches[idNextBatch];
+        const nextBatch = batches[idNextBatch]; // Arrumar a validação do id do Array qdo enviado um ID que não existe.
         const actualHour = new Date();
         const arrayNextBatch = nextBatch.split(':');
         lastBatchBread(idNextBatch);
@@ -58,17 +58,32 @@ function bakerTimer() {
     // Function to inform last batch of bread
     function lastBatchBread(idLastBatch){
         const lastBakedBread = document.querySelector('#lastBakedBread');
-        if (idLastBatch <= 8){
+        if (idLastBatch <= batches.length){
             lastBakedBread.innerHTML = batches[idLastBatch-1];
         } else {
             lastBakedBread.innerHTML = '<p> Já encerramos as fornadas por hoje! <br> Agradecemos a preferencia! </p>'
         }
 
     };
+
+    // Function to verify if seconds is zero and play modal
+    function checkSeconds(time){
+        if (time < 1 && time >= 0) {
+            console.log('Mudar a cor de fundo do container e manter assim por 5 minutos');
+            document.querySelector('.container').style.display = 'none';
+            document.querySelector('.modal').style.display = 'flex';
+            //fundo.style.backgroundColor = 'yellow';
+            limpaCron();
+            pausarCron();
+            setTimeout(() => {
+                document.location.reload();
+            }, timeToWait);
+        }
+    }
   
     // Variable Definitions
     const clock = document.querySelector('#timeToNextBread');
-    let timeToWait = 5 * 60 * 1000; // 5 minutes
+    let timeToWait = 2 * 60 * 1000; // 2 minutes
     const batchesOk = actualBatch(initHour.getTime());
 	let seconds = Math.abs(defineTimeToNextBatch(batchesOk));
 	let timer;
@@ -78,6 +93,7 @@ function bakerTimer() {
 		timer = setInterval(() => {
 			seconds--;
 			clock.innerHTML = getHourFromSeconds(seconds);
+            checkSeconds(seconds);
 		}, 1000);
 	}
 
@@ -90,7 +106,7 @@ function bakerTimer() {
 
     // Function for clean timer
 	function limpaCron() {
-		relogio.innerHTML = '00:00:00';
+		clock.innerHTML = '00:00:00';
 		seconds = 0;
 	}
 }
