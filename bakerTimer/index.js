@@ -7,10 +7,10 @@
  * Gravar no campo última fornada e iniciar timer novamente.
  * */
 
-function cronometro() {
+function bakerTimer() {
     // Descomentar linha abaixo para iniciar o cronometro na página.
 
-    //window.addEventListener('load', iniciaCron);
+    window.addEventListener('load', iniciaCron);
     
     // Array with hour and minute for bread batches
     const batches = ["07:00","08:45","10:30","12:15","14:00","15:45","17:30","19:15","21:50"];
@@ -35,9 +35,10 @@ function cronometro() {
         let bakedBread = [];
         for (let i = 0; i < batches.length; i++) {
             const element = batches[i];
-            // Split de element to get the first position to compare with the initHour parameter
+            // Split de element to get the time to compare with the initHour parameter
             const arrayElement = element.split(':');
-            if (Number(arrayElement[0]) <= initHour){
+            let batchHour = new Date();
+            if (new Date(batchHour.getFullYear(), batchHour.getMonth(), batchHour.getDate(), arrayElement[0], arrayElement[1]) < initHour){
                 bakedBread.push(arrayElement[0]);
             }
             
@@ -57,7 +58,7 @@ function cronometro() {
     // Function to inform last batch of bread
     function lastBatchBread(idLastBatch){
         const lastBakedBread = document.querySelector('#lastBakedBread');
-        if (idLastBatch < 8){
+        if (idLastBatch <= 8){
             lastBakedBread.innerHTML = batches[idLastBatch-1];
         } else {
             lastBakedBread.innerHTML = '<p> Já encerramos as fornadas por hoje! <br> Agradecemos a preferencia! </p>'
@@ -68,7 +69,7 @@ function cronometro() {
     // Variable Definitions
     const clock = document.querySelector('#timeToNextBread');
     let timeToWait = 5 * 60 * 1000; // 5 minutes
-    const batchesOk = actualBatch(initHour.getHours());
+    const batchesOk = actualBatch(initHour.getTime());
 	let seconds = Math.abs(defineTimeToNextBatch(batchesOk));
 	let timer;
 
@@ -94,4 +95,4 @@ function cronometro() {
 	}
 }
 
-cronometro();
+bakerTimer();
