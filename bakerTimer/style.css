@@ -25,3 +25,10 @@ body{
     margin-top: 25px;
     font-size: 40px;
 }
+
+.modal{
+    display: none;
+    flex-direction: column;
+    text-align: center;
+    background-color: yellow;
+}
