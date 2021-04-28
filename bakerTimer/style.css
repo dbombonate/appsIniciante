@@ -31,4 +31,6 @@ body{
     flex-direction: column;
     text-align: center;
     background-color: yellow;
+
+    font-size: 60px;
 }
