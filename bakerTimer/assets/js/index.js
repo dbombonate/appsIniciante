@@ -13,7 +13,7 @@ function bakerTimer() {
     window.addEventListener('load', iniciaCron);
     
     // Array with hour and minute for bread batches
-    const batches = ["07:00","08:45","10:30","12:15","14:00","15:45","17:30","19:15","21:28"];
+    const batches = ["07:00","08:45","10:30","12:15","14:00","15:45","17:30","19:15","21:52", "22:00"];
     const initHour = new Date();
 	
     // Função de formatação dos segundos com base na data 0
