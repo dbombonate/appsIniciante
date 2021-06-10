@@ -12,16 +12,19 @@ function bakerTimer() {
 
     window.addEventListener('load', iniciaCron);
     
-    // Array with hour and minute for bread batches
-    const localStorageBatches = localStorage.getItem('bakersTimers');
-    const batches = localStorageBatches.split(',');
-    
-    if (!batches) {
-        const batches = ["07:00","08:45","10:30","12:15","14:00","15:45","17:30","19:15","21:52", "22:00"];
-    }
+    // Define array with hours to determine do cronometer settings
+    const batches = checkPreviouConfig();
 
+    // Defini the initial hour for use in the functions
     const initHour = new Date();
-	
+    
+    // Variable Definitions
+    const clock = document.querySelector('#timeToNextBread'); // Select the page to show clock
+    let timeToWait = 2 * 60 * 1000; // 2 minutes
+    const batchesOk = actualBatch(initHour.getTime()); 
+	let seconds = Math.abs(defineTimeToNextBatch(batchesOk));
+	let timer;
+
     // Função de formatação dos segundos com base na data 0
 	function getHourFromSeconds(seconds) {
 		const data = new Date(seconds * 1000);
@@ -90,13 +93,6 @@ function bakerTimer() {
             }, timeToWait);
         }
     }
-  
-    // Variable Definitions
-    const clock = document.querySelector('#timeToNextBread');
-    let timeToWait = 2 * 60 * 1000; // 2 minutes
-    const batchesOk = actualBatch(initHour.getTime());
-	let seconds = Math.abs(defineTimeToNextBatch(batchesOk));
-	let timer;
 
     // Function for init timer
 	function iniciaCron() {
@@ -123,6 +119,16 @@ function bakerTimer() {
 		clock.innerHTML = '00:00:00';
 		seconds = 0;
 	}
+
+    // Function to check localStorage at browser
+    function checkPreviouConfig(){
+        if(localStorage.getItem('bakersTimers')){
+            const localStorageBatches = localStorage.getItem('bakersTimers');
+            return localStorageBatches.split(',');
+        } else {
+            return ["07:00","08:45","10:30","12:15","14:00","15:45","17:30","19:15","21:52", "22:00"];
+        }
+    }
 }
 
 bakerTimer();
