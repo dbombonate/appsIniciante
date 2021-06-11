@@ -16,6 +16,7 @@
             <div class="container">
               <h1 class="display-4">Configurações</h1>
               <p class="lead">Informe as configurações para o funcionamento do Cronômetro.</p>
+              <p class="text-center">Clique em gravar para finalizar.</p>
             </div>
         </div>
         <form>
@@ -26,11 +27,13 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="bakerTimer" class="col-sm-4 col-form-label">Informe as fornadas, separe com vírgula os horários:</label>
-                <div class="col-sm-8">
-                    <input type="text" id="bakerTimers" class="form-control" placeholder="08:00,10:00,12:00,14:45">
+                <label for="bakerTimer" class="col-sm-4 col-form-label">Informe o horário da fornada:</label>
+                <div class="col-sm-3">
+                    <input type="time" id="bakerTimers" class="form-control" placeholder="08:00">
                 </div>
+                <button type="button" id="addTime" class="btn btn-outline-info">+</button>    
             </div>
+            <div class="form-group row" id="addedTime"></div>
             <button class="btn btn-primary">Gravar</button>
         </form>
     </div>
